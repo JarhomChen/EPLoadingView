@@ -32,12 +32,17 @@ static const char notResultBlockKey;
 }
 
 - (void)requestWithStatus:(TyLoadingStatus)status awayTop:(NSInteger)height alpha:(CGFloat)alpha{
-    EPRequestView *view = [self requestView];
-    view.status = status;
-    view.frame = CGRectMake(0, height, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame)-height);
-    view.alpha = alpha;
     
-    view.hidden = NO;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        EPRequestView *view = [self requestView];
+        view.status = status;
+        view.frame = CGRectMake(0, height, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame)-height);
+        view.alpha = alpha;
+        
+        view.hidden = NO;
+    });
+    
+    
 }
 
 - (void)hideRequestView {
@@ -102,6 +107,9 @@ static const char notResultBlockKey;
         objc_setAssociatedObject(self, &requestViewKey, view, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
     }
+    
+    [self bringSubviewToFront:view];
+    
     
     return view;
     
