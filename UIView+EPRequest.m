@@ -3,7 +3,7 @@
 //  EPProject
 //
 //  Created by Jarhom on 2019/2/27.
-//  Copyright © 2019 厦门一品威客网络科技有限公司. All rights reserved.
+//  Copyright © 2019 Jarhom. All rights reserved.
 //
 
 #import "UIView+EPRequest.h"
